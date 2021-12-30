@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Button from "./components/button";
+import TextField from "./components/TextField";
 
 function App() {
+  let [numero, setNumero] = useState(1);
+
+  const increaseNumber = () => {
+    setNumero((numero += 1));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <TextField texto={numero} />
+      <Button onclick={increaseNumber}>Enviar Mensagem</Button>
+    </>
   );
 }
 
