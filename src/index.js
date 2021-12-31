@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import Dashboard from "./pages/Dashboard";
 import Cadastro from "./pages/Cadastro";
+import Tabuleiro from "./pages/Tabuleiro";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -12,6 +13,7 @@ ReactDOM.render(
       <Route exact path="/" element={<App />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/cadastro" element={<Cadastro />} />
+      <Route path="/tabuleiro" element={<Tabuleiro />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
