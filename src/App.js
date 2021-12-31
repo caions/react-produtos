@@ -4,6 +4,7 @@ import Input from "./components/Input";
 import TextField from "./components/TextField";
 import { Container, FormContainer } from "./styled";
 import axios from "axios";
+import Table from "./components/Table";
 
 function App() {
   const baseUrl = "http://localhost:3000";
@@ -11,7 +12,7 @@ function App() {
   let [nome, setNome] = useState("");
   let [endereco, setEndereco] = useState("");
 
-  let [dados, setDados] = useState([]);
+  let [usuario, setUsuario] = useState([]);
 
   const enterNome = (e) => {
     setNome(e.target.value);
@@ -41,14 +42,14 @@ function App() {
     try {
       const { data } = await axios.get(baseUrl);
 
-      setDados(data);
+      setUsuario(data);
       console.log(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const removeDado = async function (item) {
+  const removeDado = async (item) => {
     try {
       await axios.delete(`${baseUrl}/${item.id}`);
       await getData();
@@ -71,38 +72,18 @@ function App() {
         <Button onclick={sendForm}>Enviar Mensagem</Button>
       </FormContainer>
       <ol>
-        {dados.map((item) => (
+        {usuario.map((item) => (
           <li key={item.id}>
             {item.nome} - {item.endereco}
           </li>
         ))}
       </ol>
-      <table border={2}>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Endereco</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dados.map((item) => (
-            <tr key={item.id}>
-              <td>{item.nome}</td>
-              <td>{item.endereco}</td>
-              <td>
-                <Button
-                  onclick={() => {
-                    removeDado(item);
-                  }}
-                >
-                  deletar
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table
+        border={1}
+        dataHead={["nome", "endereco", "acao"]}
+        dataBody={usuario}
+        deleteFunc={removeDado}
+      />
     </Container>
   );
 }
