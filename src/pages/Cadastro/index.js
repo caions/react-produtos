@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../components/button";
-import Input from "../components/Input";
-import TextField from "../components/TextField";
-import { Container, FormContainer } from "./styled";
+import Button from "../../components/button";
+import Input from "../../components/Input";
+import TextField from "../../components/TextField";
+import { Container, FormContainer } from "../Dashboard/styled";
 import axios from "axios";
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
       <FormContainer>
         <nav>
           <Link to="/">Home</Link>
-          <br />
+          {"  "}
           <Link to="/dashboard">Tabela</Link>
         </nav>
         <TextField texto={`Nome: ${nome}`} />

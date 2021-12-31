@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "./styled";
 import axios from "axios";
-import Table from "../components/Table";
+import Table from "../../components/Table";
 
 function Dashboard() {
   const baseUrl = "http://localhost:3000";
@@ -36,7 +36,7 @@ function Dashboard() {
     <Container>
       <nav>
         <Link to="/">Home</Link>
-        <br />
+        {"  "}
         <Link to="/cadastro">Cadastro</Link>
       </nav>
 
@@ -45,7 +45,7 @@ function Dashboard() {
         dataHead={["nome", "endereco", "acao"]}
         dataBody={usuario}
         deleteFunc={removeDado}
-      />
+      ></Table>
     </Container>
   );
 }
