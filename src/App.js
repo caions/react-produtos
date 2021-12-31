@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Button from "./components/button";
 import Input from "./components/Input";
 import TextField from "./components/TextField";
-import { Container } from "./styled";
+import { Container, FormContainer } from "./styled";
 import axios from "axios";
 
 function App() {
-  const baseUrl = "http://localhost:3000/";
+  const baseUrl = "http://localhost:3000";
 
   let [nome, setNome] = useState("");
   let [endereco, setEndereco] = useState("");
@@ -29,6 +29,8 @@ function App() {
         endereco,
       });
       getData();
+      setNome("");
+      setEndereco("");
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -46,16 +48,32 @@ function App() {
     }
   };
 
+  const removeDado = async function (item) {
+    try {
+      await axios.delete(`${baseUrl}/${item.id}`);
+      await getData();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
   return (
     <Container>
+      <FormContainer>
+        <TextField texto={`Nome: ${nome}`} />
+        <TextField texto={`Endereço: ${endereco}`} />
+        <Input onchange={enterNome} name="nome" value={nome} />
+        <Input onchange={enterEndereco} name="endereco" value={endereco} />
+        <Button onclick={sendForm}>Enviar Mensagem</Button>
+      </FormContainer>
       <ol>
-        {dados.map((x) => (
-          <li key={x.id}>
-            {x.nome} - {x.endereco}
+        {dados.map((item) => (
+          <li key={item.id}>
+            {item.nome} - {item.endereco}
           </li>
         ))}
       </ol>
@@ -64,26 +82,27 @@ function App() {
           <tr>
             <th>Nome</th>
             <th>Endereco</th>
+            <th>Ação</th>
           </tr>
         </thead>
         <tbody>
-          {dados.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.nome}</td>
-                <td>{item.endereco}</td>
-              </tr>
-            );
-          })}
+          {dados.map((item) => (
+            <tr key={item.id}>
+              <td>{item.nome}</td>
+              <td>{item.endereco}</td>
+              <td>
+                <Button
+                  onclick={() => {
+                    removeDado(item);
+                  }}
+                >
+                  deletar
+                </Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <form>
-        <TextField texto={`Nome: ${nome}`} />
-        <TextField texto={`Endereço: ${endereco}`} />
-        <Input onchange={enterNome} name="nome" value={nome} />
-        <Input onchange={enterEndereco} name="endereco" />
-        <Button onclick={sendForm}>Enviar Mensagem</Button>
-      </form>
     </Container>
   );
 }
