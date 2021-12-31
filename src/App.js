@@ -11,7 +11,7 @@ function App() {
   let [nome, setNome] = useState("");
   let [endereco, setEndereco] = useState("");
 
-  let [data, setData] = useState("");
+  let [dados, setDados] = useState([]);
 
   const enterNome = (e) => {
     setNome(e.target.value);
@@ -38,13 +38,8 @@ function App() {
   const getData = async () => {
     try {
       const { data } = await axios.get(baseUrl);
-      const novo = data.map((x) => (
-        <li key={x.id}>
-          {x.nome} - {x.endereco}
-        </li>
-      ));
-      console.log(novo);
-      setData(novo);
+
+      setDados(data);
       console.log(data);
     } catch (error) {
       console.error(error);
@@ -57,7 +52,31 @@ function App() {
 
   return (
     <Container>
-      <ol>{data}</ol>
+      <ol>
+        {dados.map((x) => (
+          <li key={x.id}>
+            {x.nome} - {x.endereco}
+          </li>
+        ))}
+      </ol>
+      <table border={2}>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Endereco</th>
+          </tr>
+        </thead>
+        <tbody>
+          {dados.map((item) => {
+            return (
+              <tr key={item.id}>
+                <td>{item.nome}</td>
+                <td>{item.endereco}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       <form>
         <TextField texto={`Nome: ${nome}`} />
         <TextField texto={`Endereço: ${endereco}`} />
