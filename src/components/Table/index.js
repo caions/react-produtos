@@ -8,32 +8,36 @@ const Table = (props) => {
   return (
     <>
       <Container>
-        <table border={border}>
-          <thead>
-            <tr>
-              {dataHead.map((item) => (
-                <th>{item}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {dataBody.map((item) => (
-              <tr key={item.id}>
-                <td>{item.nome}</td>
-                <td>{item.endereco}</td>
-                <td>
-                  <Button
-                    onclick={() => {
-                      deleteFunc(item);
-                    }}
-                  >
-                    deletar
-                  </Button>
-                </td>
+        {dataBody == "" ? (
+          "Não existem dados"
+        ) : (
+          <table border={border}>
+            <thead>
+              <tr>
+                {dataHead.map((item) => (
+                  <th>{item}</th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {dataBody.map((item) => (
+                <tr key={item.id}>
+                  <td>{item.nome}</td>
+                  <td>{item.endereco}</td>
+                  <td>
+                    <Button
+                      onclick={() => {
+                        deleteFunc(item);
+                      }}
+                    >
+                      deletar
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </Container>
     </>
   );
