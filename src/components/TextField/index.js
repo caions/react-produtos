@@ -1,11 +1,11 @@
 import React from "react";
-import "./styles.css";
+import { Container } from "./styled";
 
 const TextField = (props) => {
   const { texto } = props;
   return (
     <>
-      <h1>{texto}</h1>
+      <Container>{texto}</Container>
     </>
   );
 };
