@@ -1,19 +1,34 @@
-import Quadrado from "../Quadrado"
-import {Container} from "./styled"
+/* eslint-disable no-plusplus */
+import Quadrado from "../Quadrado";
+import { Container } from "./styled";
 
-const MiniTabuleiro = () =>{
-  return(
+function MiniTabuleiro(props) {
+  const { quantidade } = props;
+
+  const element = (
+    <div>
+      <div className="row">
+        <Quadrado color="white" />
+        <Quadrado color="black" />
+      </div>
+      <div className="row">
+        <Quadrado color="black" />
+        <Quadrado color="white" />
+      </div>
+    </div>
+  );
+
+  const arrElement = [];
+
+  for (let i = 0; i < quantidade; i++) {
+    arrElement.push(element);
+  }
+
+  return (
     <Container>
-       <div>
-     <Quadrado color="white"/>
-      <Quadrado color="black"/>
-     </div>
-     <div>
-     <Quadrado color="black"/>
-      <Quadrado color="white"/>
-     </div>
+      {arrElement}
     </Container>
-  )
+  );
 }
 
-export default MiniTabuleiro
+export default MiniTabuleiro;

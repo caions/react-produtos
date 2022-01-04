@@ -1,12 +1,12 @@
-import MiniTabuleiro from "../../components/MiniTabuleiro"
-import { Container } from "./styled"
+import MiniTabuleiro from "../../components/MiniTabuleiro";
+import { Container } from "./styled";
 
-const Tabuleiro = ()=>{
-  return(
+function Tabuleiro() {
+  return (
     <Container>
-    <MiniTabuleiro/>
+      <MiniTabuleiro quantidade={4} />
     </Container>
-  )
+  );
 }
 
-export default Tabuleiro
+export default Tabuleiro;

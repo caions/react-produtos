@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../../components/button";
+import axios from "axios";
+import Button from "../../components/Button";
 import Input from "../../components/Input";
 import TextField from "../../components/TextField";
 import { Container, FormContainer } from "../Dashboard/styled";
-import axios from "axios";
 
 function App() {
   const baseUrl = "http://localhost:3000";
 
-  let [nome, setNome] = useState("");
-  let [endereco, setEndereco] = useState("");
+  const [nome, setNome] = useState("");
+  const [endereco, setEndereco] = useState("");
 
-  let [usuario, setUsuario] = useState([]);
+  const [usuario, setUsuario] = useState([]);
 
   const enterNome = (e) => {
     setNome(e.target.value);
@@ -20,6 +20,16 @@ function App() {
 
   const enterEndereco = (e) => {
     setEndereco(e.target.value);
+  };
+
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(baseUrl);
+
+      setUsuario(data);
+    } catch (error) {
+      // console.error(error);
+    }
   };
 
   const sendForm = async (e) => {
@@ -33,18 +43,7 @@ function App() {
       setNome("");
       setEndereco("");
     } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getData = async () => {
-    try {
-      const { data } = await axios.get(baseUrl);
-
-      setUsuario(data);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -69,7 +68,11 @@ function App() {
       <ol>
         {usuario.map((item) => (
           <li key={item.id}>
-            {item.nome} - {item.endereco}
+            {item.nome}
+            {" "}
+            -
+            {" "}
+            {item.endereco}
           </li>
         ))}
       </ol>
