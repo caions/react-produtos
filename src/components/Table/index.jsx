@@ -6,17 +6,14 @@ function Table(props) {
   const {
     border, dataBody, dataHead, deleteFunc,
   } = props;
-
   return (
     <Container>
-      {dataBody === "" ? (
-        "Não existem dados"
-      ) : (
+      {dataBody.length === 0 ? <h3>Não existem dados cadastrados</h3> : (
         <table border={border}>
           <thead>
             <tr>
-              {dataHead.map((item) => (
-                <th>{item}</th>
+              {dataHead.map((headerName) => (
+                <th key={headerName}>{headerName}</th>
               ))}
             </tr>
           </thead>

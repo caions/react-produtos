@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Container } from "./styled";
 import axios from "axios";
+import { Container } from "./styled";
 import Table from "../../components/Table";
 
 function Dashboard() {
   const baseUrl = "http://localhost:3000";
 
-  let [usuario, setUsuario] = useState([]);
+  const [usuario, setUsuario] = useState([]);
 
   const getData = async () => {
     try {
       const { data } = await axios.get(baseUrl);
-
       setUsuario(data);
     } catch (error) {
       console.error(error);
@@ -45,7 +44,7 @@ function Dashboard() {
         dataHead={["nome", "endereco", "acao"]}
         dataBody={usuario}
         deleteFunc={removeDado}
-      ></Table>
+      />
     </Container>
   );
 }
