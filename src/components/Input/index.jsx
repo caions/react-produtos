@@ -10,7 +10,7 @@ function Input(props) {
       type="text"
       name={name}
       value={value}
-      onChange={(e) => onchange(e)}
+      onChange={onchange}
       ref={refer}
     />
   );
