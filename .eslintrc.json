@@ -8,7 +8,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2016,
+    "ecmaVersion": 2019,
     "sourceType": "module"
   },
   "plugins": ["react"],
@@ -23,6 +23,10 @@
     "import/prefer-default-export": "off",
 
     // allow jsx syntax in js files (for next.js project)
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }] //should add ".ts" if typescript project
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ]
   }
 }
