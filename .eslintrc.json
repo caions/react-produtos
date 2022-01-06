@@ -13,6 +13,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "no-unused-vars": "warn",
     "comma-dangle": ["error", { "functions": "ignore" }],
     // double quote
     "quotes": [2, "double", { "avoidEscape": true }],
