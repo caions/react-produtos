@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Input from "../Input";
 
-export function Contador() {
+export const Contador = () => {
   const [valor, setValor] = useState("");
   const [valor2, setValor2] = useState("");
   /* const [contagem, setContagem] = useState(0); */

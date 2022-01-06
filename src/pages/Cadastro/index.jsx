@@ -6,12 +6,11 @@ import Input from "../../components/Input";
 import TextField from "../../components/TextField";
 import { Container, FormContainer } from "../Dashboard/styled";
 
-function App() {
+const App = () => {
   const baseUrl = "http://localhost:3000";
 
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
-
   const [usuario, setUsuario] = useState([]);
 
   const enterNome = (e) => {
@@ -37,7 +36,7 @@ function App() {
     try {
       await axios.post(baseUrl, {
         nome,
-        endereco,
+        endereco
       });
       getData();
       setNome("");
@@ -78,6 +77,6 @@ function App() {
       </ol>
     </Container>
   );
-}
+};
 
 export default App;

@@ -4,7 +4,7 @@ import axios from "axios";
 import { Container } from "./styled";
 import Table from "../../components/Table";
 
-function Dashboard() {
+const Dashboard = () => {
   const baseUrl = "http://localhost:3000";
 
   const [usuario, setUsuario] = useState([]);
@@ -14,7 +14,7 @@ function Dashboard() {
       const { data } = await axios.get(baseUrl);
       setUsuario(data);
     } catch (error) {
-      console.error(error);
+    //  console.error(error);
     }
   };
 
@@ -23,7 +23,7 @@ function Dashboard() {
       await axios.delete(`${baseUrl}/${item.id}`);
       await getData();
     } catch (error) {
-      console.error(error);
+    //  console.error(error);
     }
   };
 
@@ -47,6 +47,6 @@ function Dashboard() {
       />
     </Container>
   );
-}
+};
 
 export default Dashboard;

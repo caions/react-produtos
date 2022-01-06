@@ -1,19 +1,18 @@
-import { Container } from "./styled"
+import { Container } from "./styled";
 
-const Quadrado = (prop) =>{
-  
-  let color = "red"
+const Quadrado = (prop) => {
+  let selectedColor = "red";
+  const { color } = prop;
 
-  if(prop.color === "white"){
-    color = "white"
-  }else if(prop.color === "black"){
-    color = "black"
+  if (color === "white") {
+    selectedColor = "white";
+  } else if (color === "black") {
+    selectedColor = "black";
   }
 
+  return (
+    <Container backgroundColor={selectedColor} />
+  );
+};
 
-  return(
-      <Container backgroundColor={color}/>
-  )
-}
-
-export default Quadrado
+export default Quadrado;

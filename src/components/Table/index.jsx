@@ -2,9 +2,9 @@ import React from "react";
 import Button from "../Button";
 import { Container } from "./styled";
 
-function Table(props) {
+const Table = (props) => {
   const {
-    border, dataBody, dataHead, deleteFunc,
+    border, dataBody, dataHead, deleteFunc
   } = props;
   return (
     <Container>
@@ -38,6 +38,6 @@ function Table(props) {
       )}
     </Container>
   );
-}
+};
 
 export default Table;

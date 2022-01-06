@@ -2,7 +2,7 @@
 import Quadrado from "../Quadrado";
 import { Container } from "./styled";
 
-function MiniTabuleiro(props) {
+const MiniTabuleiro = (props) => {
   const { quantidade } = props;
 
   const element = (
@@ -29,6 +29,6 @@ function MiniTabuleiro(props) {
       {arrElement}
     </Container>
   );
-}
+};
 
 export default MiniTabuleiro;
