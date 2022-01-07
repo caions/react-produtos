@@ -14,7 +14,7 @@
   "plugins": ["react"],
   "rules": {
     "no-unused-vars": "warn",
-    "comma-dangle": ["error", { "functions": "ignore" }],
+    "comma-dangle": ["error", { "functions": "ignore", "objects": "ignore" }],
     // double quote
     "quotes": [2, "double", { "avoidEscape": true }],
     // disable react prop-types
