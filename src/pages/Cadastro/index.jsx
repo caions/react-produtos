@@ -5,13 +5,15 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import TextField from "../../components/TextField";
 import { Container, FormContainer } from "../Dashboard/styled";
+import useApi from "../../hooks/UseApi";
 
 const App = () => {
   const baseUrl = "http://localhost:3000";
+  const { response, fetchApi } = useApi(baseUrl);
 
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
-  const [usuario, setUsuario] = useState([]);
+  const [lista, setLista] = useState([]);
 
   const enterNome = (e) => {
     setNome(e.target.value);
@@ -21,15 +23,9 @@ const App = () => {
     setEndereco(e.target.value);
   };
 
-  const getData = async () => {
-    try {
-      const { data } = await axios.get(baseUrl);
-
-      setUsuario(data);
-    } catch (error) {
-      // console.error(error);
-    }
-  };
+  function renderList(userArray) {
+    setLista(userArray.map((user) => <li key={user.nome}>{user.nome}</li>));
+  }
 
   const sendForm = async (e) => {
     e.preventDefault();
@@ -38,17 +34,18 @@ const App = () => {
         nome,
         endereco
       });
-      getData();
+      // clean nome and endereco fields
       setNome("");
       setEndereco("");
+      fetchApi();
     } catch (error) {
-      // console.error(error);
+      console.error(error);
     }
   };
 
   useEffect(() => {
-    getData();
-  }, []);
+    renderList(response.data);
+  }, [response]);
 
   return (
     <Container>
@@ -65,15 +62,7 @@ const App = () => {
         <Button onclick={sendForm}>Enviar Mensagem</Button>
       </FormContainer>
       <ol>
-        {usuario.map((item) => (
-          <li key={item.id}>
-            {item.nome}
-            {" "}
-            -
-            {" "}
-            {item.endereco}
-          </li>
-        ))}
+        { lista.length === 0 ? false : lista }
       </ol>
     </Container>
   );
