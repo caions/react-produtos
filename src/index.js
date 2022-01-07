@@ -6,15 +6,18 @@ import App from "./App";
 import Dashboard from "./pages/Dashboard";
 import Cadastro from "./pages/Cadastro";
 import Tabuleiro from "./pages/Tabuleiro";
+import { MeuContext } from "./hooks/MeuContext";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route exact path="/" element={<App />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/cadastro" element={<Cadastro />} />
-      <Route path="/tabuleiro" element={<Tabuleiro />} />
-    </Routes>
-  </BrowserRouter>,
+  <MeuContext>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<App />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/tabuleiro" element={<Tabuleiro />} />
+      </Routes>
+    </BrowserRouter>
+  </MeuContext>,
   document.getElementById("root")
 );
