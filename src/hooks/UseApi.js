@@ -7,30 +7,23 @@ const useApi = (url) => {
     loading: true,
   });
 
-  const fetchApi = async (method, body) => {
+  const fetchApi = async (fetchUrl, method, body) => {
     try {
       const { data } = await axios({
         method,
-        url,
+        url: fetchUrl || url,
         data: body,
       });
-      if (method === "POST") {
-        response.data.push(data);
-        setResponse({ data: response.data, loading: false });
-      } else {
-        setResponse({ data, loading: false });
-      }
+
+      setResponse({ data, loading: false });
     } catch (err) {
-      console.log(err);
+      //  console.log(err);
     }
   };
 
-  useEffect(
-    (method, body) => {
-      fetchApi(method, body);
-    },
-    [url]
-  );
+  useEffect((method, body) => {
+    fetchApi(method, body);
+  }, []);
 
   return { response, fetchApi };
 };
