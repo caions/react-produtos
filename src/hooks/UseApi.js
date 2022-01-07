@@ -7,18 +7,30 @@ const useApi = (url) => {
     loading: true,
   });
 
-  const fetchApi = async () => {
+  const fetchApi = async (method, body) => {
     try {
-      const { data } = await axios.get(url);
-      setResponse({ data, loading: false });
+      const { data } = await axios({
+        method,
+        url,
+        data: body,
+      });
+      if (method === "POST") {
+        response.data.push(data);
+        setResponse({ data: response.data, loading: false });
+      } else {
+        setResponse({ data, loading: false });
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(() => {
-    fetchApi(url);
-  }, [url]);
+  useEffect(
+    (method, body) => {
+      fetchApi(method, body);
+    },
+    [url]
+  );
 
   return { response, fetchApi };
 };
