@@ -23,27 +23,36 @@ const App = () => {
   };
 
   function renderList(userArray) {
-    setLista(userArray.map((user) => <li key={user.nome}>{user.nome}</li>));
+    if (userArray.length > 1) {
+      setLista(userArray.map((user) => <li key={user.nome}>{user.nome}</li>));
+    }
   }
 
   const sendForm = async (e) => {
     e.preventDefault();
     try {
-      await fetchApi("POST", {
+      await fetchApi(baseUrl, "POST", {
         nome,
         endereco
       });
+
+      await fetchApi(baseUrl, "GET");
+
       // clean nome and endereco fields
       setNome("");
       setEndereco("");
     } catch (error) {
-      console.error(error);
+    //  console.error(error);
     }
   };
 
+  useEffect(async () => {
+    await fetchApi(baseUrl);
+  }, []);
+
   useEffect(() => {
     renderList(response.data);
-  }, [response]);
+  }, [response.data]);
 
   return (
     <Container>

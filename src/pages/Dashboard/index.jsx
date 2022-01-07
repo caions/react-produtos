@@ -1,35 +1,32 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { Container } from "./styled";
 import Table from "../../components/Table";
+import useApi from "../../hooks/UseApi";
 
 const Dashboard = () => {
   const baseUrl = "http://localhost:3000";
 
   const [usuario, setUsuario] = useState([]);
-
-  const getData = async () => {
-    try {
-      const { data } = await axios.get(baseUrl);
-      setUsuario(data);
-    } catch (error) {
-    //  console.error(error);
-    }
-  };
-
+  const { response, fetchApi } = useApi(baseUrl);
+  // console.log(response);
   const removeDado = async (item) => {
     try {
-      await axios.delete(`${baseUrl}/${item.id}`);
-      await getData();
+      // await axios.delete(`${baseUrl}/${item.id}`);
+      await fetchApi(`${baseUrl}/${item.id}`, "DELETE");
+      await fetchApi(baseUrl);
     } catch (error) {
     //  console.error(error);
     }
   };
 
   useEffect(() => {
-    getData();
+    fetchApi(baseUrl);
   }, []);
+
+  useEffect(() => {
+    setUsuario(response.data);
+  }, [response.data]);
 
   return (
     <Container>
