@@ -18,6 +18,7 @@ const Home = () => {
         onclick={() => {
           atualizaMensagem("nome", "Clau");
         }}
+        color="primary"
       >
         clique
       </Button>
@@ -26,11 +27,12 @@ const Home = () => {
         onclick={() => {
           addCount(3);
         }}
+        color="alert"
       >
         Count
       </Button>
       <Link to="dashboard">
-        <Button>Entrar</Button>
+        <Button color="danger">Entrar</Button>
       </Link>
     </>
   );
