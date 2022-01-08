@@ -13,6 +13,8 @@
   },
   "plugins": ["react"],
   "rules": {
+    "react/jsx-one-expression-per-line": "off",
+    "object-curly-newline": "off",
     "operator-linebreak": "off",
     "no-unused-vars": "warn",
     "comma-dangle": ["error", { "functions": "ignore", "objects": "ignore" }],

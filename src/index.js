@@ -6,10 +6,10 @@ import App from "./App";
 import Dashboard from "./pages/Dashboard";
 import Cadastro from "./pages/Cadastro";
 import Tabuleiro from "./pages/Tabuleiro";
-import { MeuContext } from "./hooks/MeuContext";
+import { GlobalContext } from "./hooks/GlobalContext";
 
 ReactDOM.render(
-  <MeuContext>
+  <GlobalContext>
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<App />} />
@@ -18,6 +18,6 @@ ReactDOM.render(
         <Route path="/tabuleiro" element={<Tabuleiro />} />
       </Routes>
     </BrowserRouter>
-  </MeuContext>,
+  </GlobalContext>,
   document.getElementById("root")
 );
