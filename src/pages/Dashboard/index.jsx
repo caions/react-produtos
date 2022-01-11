@@ -12,7 +12,6 @@ const Dashboard = () => {
   // console.log(response);
   const removeDado = async (item) => {
     try {
-      // await axios.delete(`${baseUrl}/${item.id}`);
       await fetchApi(`${baseUrl}/${item.id}`, "DELETE");
       await fetchApi(baseUrl);
     } catch (error) {
