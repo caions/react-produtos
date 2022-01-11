@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container } from "./styled";
 import Table from "../../components/Table";
@@ -7,7 +7,6 @@ import useApi from "../../hooks/UseApi";
 const Dashboard = () => {
   const baseUrl = "http://localhost:3000";
 
-  const [usuario, setUsuario] = useState([]);
   const { response, fetchApi } = useApi(baseUrl);
   // console.log(response);
   const removeDado = async (item) => {
@@ -23,10 +22,6 @@ const Dashboard = () => {
     fetchApi(baseUrl);
   }, []);
 
-  useEffect(() => {
-    setUsuario(response.data);
-  }, [response.data]);
-
   return (
     <Container>
       <nav>
@@ -38,7 +33,7 @@ const Dashboard = () => {
       <Table
         border={1}
         dataHead={["nome", "endereco", "acao"]}
-        dataBody={usuario}
+        dataBody={response.data}
         deleteFunc={removeDado}
       />
     </Container>
